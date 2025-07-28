@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TikTok OAuth Callback</title>
+</head>
+<body>
+  <h1>TikTok OAuth Callback</h1>
+  <p id="result">Waiting for code...</p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const state = params.get("state");
+    const error = params.get("error");
+
+    if (code) {
+      document.getElementById("result").innerText = "Authorization code: " + code;
+    } else if (error) {
+      document.getElementById("result").innerText = "Error: " + error;
+    } else {
+      document.getElementById("result").innerText = "No code found in URL.";
+    }
+  </script>
+</body>
+</html>
